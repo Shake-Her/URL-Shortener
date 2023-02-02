@@ -1,4 +1,6 @@
-const {getUser} = require('../services/sessionIDauth')
+//Stateful Authorization
+
+const { getUser } = require('../services/sessionIDauth')
 
 async function handleUserafterLogin(req, res, next) {
     

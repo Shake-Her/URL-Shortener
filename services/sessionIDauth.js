@@ -1,3 +1,5 @@
+//Stateful Authorization
+
 const mapSessionIDwithUser = new Map();
 
 function setUser(id, user) {

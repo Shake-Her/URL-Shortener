@@ -14,6 +14,7 @@ const handelSignup = async (req, res) => {
     res.redirect('/');
 }
 
+//Stateful Authorization
 const handelLogin = async (req, res) => {
     const body = req.body;
     
