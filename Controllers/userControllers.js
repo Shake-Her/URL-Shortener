@@ -23,12 +23,10 @@ const handelLogin = async (req, res) => {
     })
 
     if (!findData)
-        return res.redirect('/*');
+        return res.redirect('/error');
     
-    //if everything is upto this point then only
-    sessionID = uuidv4();
-    setUser(sessionID, findData);
-    res.cookie('uidKey', sessionID);
+    const jwt_token = setUser(findData);
+    res.cookie('uidKey',jwt_token);
     
     res.redirect('/');
 }

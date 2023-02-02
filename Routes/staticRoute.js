@@ -8,7 +8,7 @@ router.get('/', homePageFunction)
     res.render('signup');
 }).get('/login', (req, res) => {
     res.render('login');
-}).get('/*', (req, res) => {
+}).get('/error', (req, res) => {
     res.render('universalErrorpage')
 });
 module.exports = router;

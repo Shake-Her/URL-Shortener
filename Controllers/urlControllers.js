@@ -5,7 +5,7 @@ const saveDatatoDB = async (req, res) => {
 
     const body = req.body;
     if (!body.url) {
-        return res.redirect('/*')
+        return res.redirect('/error')
     }
 
     let canCreate = false;
@@ -13,9 +13,9 @@ const saveDatatoDB = async (req, res) => {
     const id = shortid();
     const url = body.url;
 
-    const result = await URL.findOne({ redirectURL: url });
+    const result = await URL.findOne({ redirectURL: url , createdBy : req.sendUserdata._id});
 
-    if (!result || canCreate && result.redirectURL !== url) {
+    if (!result || result.redirectURL !== url) {
         await URL.create({
             shortID: id,
             redirectURL: url,

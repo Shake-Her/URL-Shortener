@@ -1,11 +1,18 @@
-const mapSessionIDwithUser = new Map();
+//stateless authorization
+const jwt = require('jsonwebtoken')
+require('dotenv').config();
 
-function setUser(id, user) {
-    mapSessionIDwithUser.set(id, user);
+function setUser(user) {
+    return jwt.sign({
+        _id: user._id,
+        email:user.email,
+    }, process.env.SECRET_JWT_KEY);
 }
 
-function getUser(id) {
-    return mapSessionIDwithUser.get(id);
+function getUser(token) {
+    if (!token)
+        return null;
+    return jwt.verify(token, process.env.SECRET_JWT_KEY);
 }
 
 module.exports = {

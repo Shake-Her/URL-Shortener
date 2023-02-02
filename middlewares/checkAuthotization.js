@@ -1,9 +1,9 @@
 const {getUser} = require('../services/sessionIDauth')
 
 async function checkAuth(req, res, next) {
-    const userSessionId = req.cookies.uidKey;
+    const token = req.cookies.uidKey;
 
-    const userData = getUser(userSessionId);
+    const userData = getUser(token);
 
     req.userData = userData;
     next();

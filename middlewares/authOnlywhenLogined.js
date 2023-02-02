@@ -2,15 +2,15 @@ const {getUser} = require('../services/sessionIDauth')
 
 async function handleUserafterLogin(req, res, next) {
     
-    const userSessionId = req.cookies.uidKey;
+    const token = req.cookies.uidKey;
 
-    if (!userSessionId)
-        return res.redirect('/*')
+    if (!token)
+        return res.redirect('/error')
     
-    const userData = getUser(userSessionId);
+    const userData = getUser(token);
 
     if (!userData)
-        return res.redirect('/*')
+        return res.redirect('/error')
     
     req.sendUserdata = userData;
     next();
