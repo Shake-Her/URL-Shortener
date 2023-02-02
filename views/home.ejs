@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h2>Your Saved URL's</h2>
+
+    <% if (locals.response) { %>
+    <h4>This Generated Short ID is : <%= locals.response %></h4>
+    <% } %>
+
+    <form method="post" action="/url">
+      <label for="entered-url">ENTER URL: </label>
+      <input
+        type="text"
+        name="url"
+        id="entered-url"
+        placeholder="https://example.com"
+      />
+      <button type="submit">Submit</button>
+    </form>
+    <div>
+      <% if (locals.urls) { %>
+      <table>
+        <thead>
+          <td>Sr.No</td>
+          <td>Original URL</td>
+          <td>Generated URL</td>
+        </thead>
+        <tbody>
+          <% locals.urls.forEach((ele,idx) => { %>
+          <tr>
+            <td><%= idx+1 %></td>
+            <td><%= ele.redirectURL %></td>
+            <td><%= ele.shortID %></td>
+            <td><%= ele.history %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } %>
+    </div>
+  </body>
+</html>
